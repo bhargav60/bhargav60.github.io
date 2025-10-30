@@ -1,122 +1,781 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bhargav — Senior Data Engineer</title>
-  <meta name="description" content="Bhargav — Senior Data Engineer. Real-time pipelines, data platform, ML infra, and observability." />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Data Engineer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151935;
+            --accent-purple: #a78bfa;
+            --accent-pink: #ec4899;
+            --accent-cyan: #22d3ee;
+            --text-primary: #e5e7eb;
+            --text-secondary: #9ca3af;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        .gradient-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            background: linear-gradient(125deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+        }
+
+        .gradient-orbs {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-purple);
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-pink);
+            top: 40%;
+            right: -100px;
+            animation-delay: 5s;
+        }
+
+        .orb3 {
+            width: 450px;
+            height: 450px;
+            background: var(--accent-cyan);
+            bottom: -150px;
+            left: 30%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -100px) scale(1.1); }
+            66% { transform: translate(-50px, 100px) scale(0.9); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 40px 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(167, 139, 250, 0.4);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(167, 139, 250, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--accent-cyan);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: rgba(167, 139, 250, 0.05);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            background: rgba(167, 139, 250, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 10px;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: rgba(21, 25, 53, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(167, 139, 250, 0.3);
+            border-color: var(--accent-purple);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-cyan);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 10px 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-list li::before {
+            content: '▹';
+            color: var(--accent-purple);
+            font-size: 1.2rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .project-card {
+            background: rgba(21, 25, 53, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(167, 139, 250, 0.2);
+        }
+
+        .project-image {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(34, 211, 238, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            padding: 40px;
+        }
+
+        .project-content {
+            padding: 40px;
+        }
+
+        .project-content h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--accent-cyan);
+        }
+
+        .project-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tech-tag {
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--accent-purple);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-links a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-purple);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-container p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background: rgba(21, 25, 53, 0.6);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 15px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(167, 139, 250, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--accent-cyan);
+        }
+
+        .contact-card a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-purple);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(167, 139, 250, 0.1);
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content h1 { font-size: 3.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .project-card { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content .subtitle { font-size: 1.3rem; }
+            nav ul { gap: 20px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2rem; }
+            .cta-buttons { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">Bhargav — Data Eng</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#blog">Writing</a></li>
-          <li class="nav-item"><a class="nav-link" href="resume/resume.pdf" target="_blank">Resume</a></li>
-        </ul>
-      </div>
+    <div class="gradient-bg"></div>
+    <div class="gradient-orbs">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
     </div>
-  </nav>
 
-  <header class="bg-primary text-white py-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-8">
-          <h1 class="display-5">Bhargav — Senior Data Engineer</h1>
-          <p class="lead">Designing resilient data platforms and ML infrastructure — real-time stream processing, ETL, cost optimization, and observability at scale.</p>
-          <p>Key: Spark, Kafka, Airflow, dbt, BigQuery/Redshift, Terraform, Python, SQL</p>
-          <p>
-            <a class="btn btn-light btn-lg" href="#projects">View projects</a>
-            <a class="btn btn-outline-light btn-lg" href="mailto:youremail@example.com">Contact</a>
-          </p>
+    <nav>
+        <div class="container">
+            <div class="logo">YourName.dev</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
-        <div class="col-md-4 text-center">
-          <img src="assets/profile.png" alt="profile" class="img-fluid rounded-circle" style="max-width:180px;">
-        </div>
-      </div>
-    </div>
-  </header>
+    </nav>
 
-  <main class="container my-5">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Data Engineer<br>& Architect</h1>
+            <p class="subtitle">Transforming Raw Data into Actionable Insights</p>
+            <p class="tagline">
+                Specializing in building scalable data pipelines, cloud-native architectures, 
+                and real-time analytics solutions that drive business growth.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Building the Future of Data</h3>
+                    <p>
+                        As a Senior Data Engineer, I architect and implement robust data solutions 
+                        that power decision-making at scale. With expertise across the modern data 
+                        stack, I transform complex data challenges into elegant, performant systems.
+                    </p>
+                    <p>
+                        My passion lies in designing pipelines that handle millions of events per 
+                        second, optimizing query performance, and building data platforms that 
+                        enable teams to move fast and make data-driven decisions.
+                    </p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projects Delivered</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10M+</div>
+                        <div class="stat-label">Daily Events Processed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Pipeline Uptime</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Arsenal</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">☁️</div>
+                    <h3>Cloud Platforms</h3>
+                    <ul class="skill-list">
+                        <li>AWS (S3, Redshift, EMR, Glue, Lambda)</li>
+                        <li>GCP (BigQuery, Dataflow, Pub/Sub)</li>
+                        <li>Azure (Synapse, Data Factory)</li>
+                        <li>Databricks</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <h3>Big Data & Streaming</h3>
+                    <ul class="skill-list">
+                        <li>Apache Spark (PySpark, Scala)</li>
+                        <li>Apache Kafka & Kafka Streams</li>
+                        <li>Apache Flink</li>
+                        <li>Apache Airflow</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>Databases & Storage</h3>
+                    <ul class="skill-list">
+                        <li>Snowflake & Data Warehousing</li>
+                        <li>PostgreSQL, MySQL</li>
+                        <li>MongoDB, Cassandra</li>
+                        <li>Redis, ElasticSearch</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🐍</div>
+                    <h3>Languages & Tools</h3>
+                    <ul class="skill-list">
+                        <li>Python, SQL, Scala</li>
+                        <li>dbt, Great Expectations</li>
+                        <li>Docker, Kubernetes</li>
+                        <li>Terraform, CI/CD</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3>Data Modeling</h3>
+                    <ul class="skill-list">
+                        <li>Dimensional Modeling (Kimball)</li>
+                        <li>Data Vault 2.0</li>
+                        <li>Data Mesh Architecture</li>
+                        <li>Real-time Analytics</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🔐</div>
+                    <h3>Data Governance</h3>
+                    <ul class="skill-list">
+                        <li>Data Quality Frameworks</li>
+                        <li>Metadata Management</li>
+                        <li>Data Lineage Tracking</li>
+                        <li>Security & Compliance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="projects">
-      <h2>Selected projects</h2>
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">🚀</div>
+                    <div class="project-content">
+                        <h3>Real-Time Analytics Engine</h3>
+                        <p>
+                            Designed and deployed a real-time analytics platform processing 10M+ 
+                            events daily with sub-second latency. Reduced data processing time 
+                            from hours to seconds using Kafka and Spark Streaming.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Apache Kafka</span>
+                            <span class="tech-tag">Spark Streaming</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#">View Details →</a>
+                        </div>
+                    </div>
+                </div>
 
-      <article class="card mb-4">
-        <div class="card-body">
-          <h3>Real-time event processing platform (Kafka + Flink)</h3>
-          <p class="text-muted">Scale: 200k events/s; 99.95% availability</p>
-          <p>Built a real-time ingestion & aggregation pipeline using Kafka, Flink, and a custom state backend. Deliverables: sub-second metrics, schema evolution handling, and automated disaster recovery runbooks.</p>
-          <p><strong>Tech:</strong> Kafka, Flink, Kubernetes, Terraform, Prometheus</p>
-          <p>
-            <a href="https://github.com/your-org/repo-real-time" target="_blank" class="btn btn-sm btn-primary">Code</a>
-            <a href="#project-details" class="btn btn-sm btn-outline-secondary">Case study</a>
-          </p>
+                <div class="project-card">
+                    <div class="project-image">📊</div>
+                    <div class="project-content">
+                        <h3>Cloud Data Warehouse Migration</h3>
+                        <p>
+                            Led the migration of a legacy on-premise data warehouse to Snowflake, 
+                            implementing dbt for transformations. Achieved 60% cost reduction and 
+                            3x query performance improvement.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Snowflake</span>
+                            <span class="tech-tag">dbt</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Airflow</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#">View Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🤖</div>
+                    <div class="project-content">
+                        <h3>ML Feature Store Platform</h3>
+                        <p>
+                            Built an enterprise feature store serving 50+ ML models across 20 data 
+                            science teams. Implemented real-time and batch feature pipelines with 
+                            automated monitoring and quality checks.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">PySpark</span>
+                            <span class="tech-tag">GCP</span>
+                            <span class="tech-tag">BigQuery</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">Feast</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#">View Details →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </article>
-
-      <article class="card mb-4">
-        <div class="card-body">
-          <h3>Cost-optimized batch ETL to BigQuery</h3>
-          <p class="text-muted">Reduced data warehousing cost by 35%</p>
-          <p>Rewrote legacy ETL jobs to use partitioned tables, optimized SQL, and automated table expiration; introduced dbt for transformations and incremental models.</p>
-          <p><strong>Tech:</strong> dbt, BigQuery, Airflow, GCS</p>
-          <p>
-            <a href="https://github.com/your-org/repo-dbt" target="_blank" class="btn btn-sm btn-primary">Code</a>
-          </p>
-        </div>
-      </article>
-
     </section>
 
-    <section id="skills" class="my-5">
-      <h2>Technical skills</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <h5>Languages</h5>
-          <ul>
-            <li>Python, SQL, Scala, Bash</li>
-          </ul>
+    <section id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <h2 class="section-title">Let's Connect</h2>
+                <p>
+                    I'm always open to discussing new projects, creative ideas, or opportunities 
+                    to collaborate on innovative data solutions.
+                </p>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">✉️</div>
+                        <h3>Email</h3>
+                        <a href="mailto:your.email@example.com">your.email@example.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💼</div>
+                        <h3>LinkedIn</h3>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank">Connect with me</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🐙</div>
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/yourusername" target="_blank">View my code</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-          <h5>Platforms</h5>
-          <ul>
-            <li>AWS, GCP, Kubernetes</li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h5>Tools</h5>
-          <ul>
-            <li>Spark, Flink, Kafka, Airflow, dbt, Terraform</li>
-          </ul>
-        </div>
-      </div>
     </section>
 
-    <section id="blog" class="my-5">
-      <h2>Writing & talks</h2>
-      <ul>
-        <li><a href="https://medium.com/@you/case-study-on-stream-processing" target="_blank">Case study: building a resilient stream processing stack</a></li>
-      </ul>
-    </section>
-
-    <section id="contact" class="my-5">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-      <p>GitHub: <a href="https://github.com/bhargav60" target="_blank">github.com/bhargav60</a> · LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin</a></p>
-    </section>
-  </main>
-
-  <footer class="bg-dark text-white py-3">
-    <div class="container text-center">
-      © 2025 Bhargav — Senior Data Engineer · <a href="resume/resume.pdf" class="text-white">Resume</a>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Name. Crafted with passion for data engineering.</p>
+        </div>
+    </footer>
 </body>
 </html>
