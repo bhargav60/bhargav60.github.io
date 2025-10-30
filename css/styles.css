@@ -1,0 +1,10 @@
+/* Basic custom styles */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+header {
+  background-image: linear-gradient(90deg, rgba(2,6,23,0.9), rgba(10,25,47,0.9));
+}
+.card h3 {
+  margin-bottom: 0.5rem;
+}
