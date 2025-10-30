@@ -49,7 +49,7 @@ Coming soon - currently migrating my best work to public repositories!
 ### 📊 Current Focus
 
 - Exploring modern data stack tools and techniques
-- Implementing data mesh architectures
+- Implementing data migrations
 - Building event-driven data platforms
 - Contributing to open-source data engineering projects
 
